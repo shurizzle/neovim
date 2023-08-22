@@ -17,6 +17,12 @@ find_package(Libluv 1.43.0 REQUIRED)
 target_include_directories(main_lib SYSTEM BEFORE INTERFACE ${LIBLUV_INCLUDE_DIR})
 target_link_libraries(main_lib INTERFACE ${LIBLUV_LIBRARY})
 
+find_package(LuaOpenSSL REQUIRED)
+target_link_libraries(main_lib INTERFACE ${LUA_OPENSSL_LIBRARY})
+find_package(OpenSSL REQUIRED)
+target_link_libraries(main_lib INTERFACE ${OPENSSL_SSL_LIBRARY})
+target_link_libraries(main_lib INTERFACE ${OPENSSL_CRYPTO_LIBRARY})
+
 find_package(Iconv REQUIRED)
 find_package(Libtermkey 0.22 REQUIRED)
 find_package(Libvterm 0.3 REQUIRED)

@@ -58,6 +58,8 @@ option(USE_BUNDLED_LUV "Use the bundled version of luv." ${USE_BUNDLED})
 option(USE_BUNDLED_LUA "Use the bundled version of lua." OFF)
 option(USE_BUNDLED_TS_PARSERS "Use the bundled treesitter parsers." ${USE_BUNDLED})
 option(USE_BUNDLED_TS "Use the bundled treesitter runtime." ${USE_BUNDLED})
+option(USE_BUNDLED_OPENSSL "Use the bundled openssl." ${USE_BUNDLED})
+option(USE_BUNDLED_LUA_OPENSSL "Use the bundled lua-openssl." ${USE_BUNDLED})
 
 if(USE_BUNDLED AND MSVC)
   option(USE_BUNDLED_GETTEXT "Use the bundled version of gettext." ON)
@@ -198,6 +200,14 @@ set(TREESITTER_QUERY_SHA256 e2b806f80e8bf1c4f4e5a96248393fe6622fc1fc6189d6896d26
 set(TREESITTER_URL https://github.com/tree-sitter/tree-sitter/archive/v0.20.8.tar.gz)
 set(TREESITTER_SHA256 6181ede0b7470bfca37e293e7d5dc1d16469b9485d13f13a605baec4a8b1f791)
 
+# set(OPENSSL_URL https://www.openssl.org/source/openssl-1.1.1v.tar.gz)
+# set(OPENSSL_SHA256 d6697e2871e77238460402e9362d47d18382b15ef9f246aba6c7bd780d38a6b0)
+set(OPENSSL_URL https://www.openssl.org/source/openssl-3.1.2.tar.gz)
+set(OPENSSL_SHA256 a0ce69b8b97ea6a35b96875235aa453b966ba3cba8af2de23657d8b6767d6539)
+
+set(LUA_OPENSSL_URL https://github.com/zhaozg/lua-openssl/releases/download/0.8.5-0/openssl-0.8.5-0.tar.gz)
+set(LUA_OPENSSL_SHA256 d478b12e50eaec5c5ca8a03d4eb15a00cc96c9c9dd53e980ed8cfa7845a7fc4c)
+
 if(USE_EXISTING_SRC_DIR)
   get_cmake_property(VARS VARIABLES)
   foreach (VAR ${VARS})
@@ -260,6 +270,14 @@ endif()
 
 if(USE_BUNDLED_TS)
   include(BuildTreesitter)
+endif()
+
+if(USE_BUNDLED_OPENSSL)
+  include(BuildOpenSSL)
+endif()
+
+if(USE_BUNDLED_LUA_OPENSSL)
+  include(BuildLuaOpenSSL)
 endif()
 
 if(WIN32)

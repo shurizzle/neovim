@@ -1,0 +1,3 @@
+find_library(LUA_OPENSSL_LIBRARY NAMES luaopenssl_a luaopenssl libluaopenssl_a libluaopenssl.so)
+find_package_handle_standard_args(LuaOpenSSL DEFAULT_MSG LUA_OPENSSL_LIBRARY)
+mark_as_advanced(LUA_OPENSSL_LIBRARY)
