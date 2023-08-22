@@ -2690,11 +2690,23 @@ void list_lua_version(void)
   api_free_object(ret);
 }
 
+static void list_ssl_version(void)
+{
+  char *code = "return select(3, require('openssl').version())";
+  Error err = ERROR_INIT;
+  Object ret = nlua_exec(cstr_as_string(code), (Array)ARRAY_DICT_INIT, &err);
+  assert(!ERROR_SET(&err));
+  assert(ret.type == kObjectTypeString);
+  msg(ret.data.string.data);
+  api_free_object(ret);
+}
+
 void list_version(void)
 {
   msg(longVersion);
   msg(version_buildtype);
   list_lua_version();
+  list_ssl_version();
 #ifndef NDEBUG
   msg(version_cflags);
 #endif
