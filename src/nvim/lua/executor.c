@@ -63,7 +63,8 @@
 #include "nvim/vim.h"
 #include "nvim/window.h"
 
-LUALIB_API int luaopen_openssl(lua_State*L);
+LUALIB_API int luaopen_openssl(lua_State *L);
+LUALIB_API int luaopen_zlib(lua_State *L);
 
 static int in_fast_callback = 0;
 static bool in_script = false;
@@ -585,6 +586,9 @@ static void nlua_common_vim_init(lua_State *lstate, bool is_thread, bool is_stan
 
   luaopen_openssl(lstate);
   lua_setfield(lstate, -2, "openssl");
+
+  luaopen_zlib(lstate);
+  lua_setfield(lstate, -2, "zlib");
   lua_pop(lstate, 3);
 }
 

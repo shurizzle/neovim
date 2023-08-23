@@ -31,3 +31,7 @@ ExternalProject_Add(openssl-static
   BUILD_COMMAND        ${OPENSSL_BUILD_COMMAND}
   INSTALL_COMMAND      ${OPENSSL_INSTALL_COMMAND}
   TEST_COMMAND         "")
+
+if(USE_BUNDLED_ZLIB)
+  add_dependencies(openssl-static zlib-static)
+endif()

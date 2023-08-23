@@ -58,6 +58,8 @@ option(USE_BUNDLED_LUV "Use the bundled version of luv." ${USE_BUNDLED})
 option(USE_BUNDLED_LUA "Use the bundled version of lua." OFF)
 option(USE_BUNDLED_TS_PARSERS "Use the bundled treesitter parsers." ${USE_BUNDLED})
 option(USE_BUNDLED_TS "Use the bundled treesitter runtime." ${USE_BUNDLED})
+option(USE_BUNDLED_ZLIB "Use the bundled zlib." ${USE_BUNDLED})
+option(USE_BUNDLED_LUA_ZLIB "Use the bundled lua-zlib." ${USE_BUNDLED})
 option(USE_BUNDLED_OPENSSL "Use the bundled openssl." ${USE_BUNDLED})
 option(USE_BUNDLED_LUA_OPENSSL "Use the bundled lua-openssl." ${USE_BUNDLED})
 
@@ -200,6 +202,12 @@ set(TREESITTER_QUERY_SHA256 e2b806f80e8bf1c4f4e5a96248393fe6622fc1fc6189d6896d26
 set(TREESITTER_URL https://github.com/tree-sitter/tree-sitter/archive/v0.20.8.tar.gz)
 set(TREESITTER_SHA256 6181ede0b7470bfca37e293e7d5dc1d16469b9485d13f13a605baec4a8b1f791)
 
+set(ZLIB_URL https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.1.3.tar.gz)
+set(ZLIB_SHA256 d20e55f89d71991c59f1c5ad1ef944815e5850526c0d9cd8e504eaed5b24491a)
+
+set(LUA_ZLIB_URL https://github.com/brimworks/lua-zlib/archive/refs/tags/v1.2.zip)
+set(LUA_ZLIB_SHA256 082d908fb316f5a8e0e8608cc863ea8d2b8f00902565679a99a433ada0b0b5ed)
+
 # set(OPENSSL_URL https://www.openssl.org/source/openssl-1.1.1v.tar.gz)
 # set(OPENSSL_SHA256 d6697e2871e77238460402e9362d47d18382b15ef9f246aba6c7bd780d38a6b0)
 set(OPENSSL_URL https://www.openssl.org/source/openssl-3.1.2.tar.gz)
@@ -270,6 +278,14 @@ endif()
 
 if(USE_BUNDLED_TS)
   include(BuildTreesitter)
+endif()
+
+if(USE_BUNDLED_ZLIB)
+  include(BuildZlib)
+endif()
+
+if(USE_BUNDLED_LUA_ZLIB)
+  include(BuildLuaZlib)
 endif()
 
 if(USE_BUNDLED_OPENSSL)

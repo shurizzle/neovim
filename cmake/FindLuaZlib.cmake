@@ -1,0 +1,3 @@
+find_library(LUA_ZLIB_LIBRARY NAMES luazlib_a luazlib libluazlib_a libluazlib.so)
+find_package_handle_standard_args(LuaZlib DEFAULT_MSG LUA_ZLIB_LIBRARY)
+mark_as_advanced(LUA_ZLIB_LIBRARY)
